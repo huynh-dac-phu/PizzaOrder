@@ -1,0 +1,36 @@
+.list-item {
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 15px;
+}
+
+.list-item:not(:last-child) {
+  border-bottom: 1px solid #898989;
+}
+
+.list-item:nth-last-child(-n + 2) {
+  height: 40px;
+}
+
+.list-item--left {
+  width: 150px;
+}
+
+.list-item--name {
+  font-weight: 400;
+}
+
+.list-item--price {
+  font-size: 14px;
+  font-weight: 400;
+  color: #898989;
+}
+/*# sourceMappingURL=listItem.css.map */

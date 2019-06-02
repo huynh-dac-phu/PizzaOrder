@@ -1,0 +1,37 @@
+.pick {
+    height: 30px;
+    display: flex;
+    margin-left: 20px;
+    &-btn {
+        border-radius: 5px;
+        width: 30px;
+        height: 100%;
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        border: none;
+        outline: none;
+        &--decrease {
+            background-color: #f45642;
+            &:focus, &:active {
+                box-shadow: 0px 0px 3px 5px #f45642;
+                border-left: none;
+            }
+        }
+        &--increase {
+            background-color: #41f48c;
+            &:focus, &:active {
+                box-shadow: 0px 0px 3px 5px #41f48c;
+                border-left: none;
+            }
+        }
+    }
+    &-number {
+        width: 40px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #d2dbd6;
+        outline: none;
+        border: none;
+    }
+}
