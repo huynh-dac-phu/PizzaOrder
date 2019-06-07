@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-//import Pick from './pick';
 import './style/listItem/listItem.css';
 import './style/pick/pick.css';
 export default class ListItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            count: this.props.countDefault
+            count: 0,
+            isReset: this.props.isReset
         }
     }
     onIncrease = () => {
        this.props.onIncrease(this.props.id)
-       const {count} = this.state;
+       const { count } = this.state;
        this.setState({
            count: count + 1
        })
@@ -26,7 +26,14 @@ export default class ListItem extends Component {
             })
         }
     }
-
+    componentWillReceiveProps(prevProps){
+        if(prevProps.isReset === true){
+            this.setState({
+                count: 0,
+                isReset: false
+            })
+        }
+    }
     render(){
         const {id, name, price} = this.props;
         const {count} = this.state;
@@ -44,7 +51,6 @@ export default class ListItem extends Component {
                     <input className='pick-number'
                         ref={'number'}
                         value={count}
-                        onChange={() => this.onChanged()}
                         id={id}
                     ></input>
                     <button className='pick-btn pick-btn--increase'
