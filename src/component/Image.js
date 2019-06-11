@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './style/image/image.css'
 export default class Image extends Component {
     render(){
-        console.log(this.props.src)
         return(
             <div className='image-grid'>
                 {this.props.src.map((itemSrc, key) => {

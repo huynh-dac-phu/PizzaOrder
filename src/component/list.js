@@ -7,7 +7,7 @@ export default class List extends Component {
         this.props.resetOrder()
     }
     render(){
-        const { data, price, resetOrder, onIncrease, onDecrease, countDefault } = this.props;
+        const { data, price, resetOrder, onIncrease, onDecrease, isReset } = this.props;
         return(
             <div className='table-list'>
                 <div className='list-heading'>
@@ -24,11 +24,10 @@ export default class List extends Component {
                                         key={key} 
                                         name={item.name} 
                                         price={item.price}
-                                        countDefault={countDefault}
                                         id={item.id}
-                                        select={item.isSelected}
                                         onIncrease={onIncrease}
-                                        onDecrease={onDecrease}>
+                                        onDecrease={onDecrease}
+                                        isReset={isReset}>
                                 </ListItem>
                             );
                         }

@@ -11,9 +11,9 @@ class App extends Component {
     this.state = {
       data: data,
       count: [],
-      countDefault: 0,
       price: 0,
-      arraySrc: []
+      arraySrc: [],
+      isReset: false
     }
   }
   converToObject(){
@@ -28,7 +28,8 @@ class App extends Component {
         count: [
           ...this.state.count,
           id
-        ]
+        ],
+        isReset: false
       }, 
       () => {
         this.calculatePrice();
@@ -37,8 +38,8 @@ class App extends Component {
   }
   onDecrease = (id) => {
     const { count } = this.state;
-    const index = count.indexOf(id);
-    if(count.length > 0){
+    const index = count.indexOf(id);  
+    if(count.length > 0 && index !== -1){
       count.splice(index, 1)
       this.setState({
         count: count
@@ -52,12 +53,13 @@ class App extends Component {
   getArrayPrice(){
     const {count, data} = this.state;
     let arrayPrice = [];
-    if(count.length >= 0){
+    if(count.length > 0){
       for(let i =0; i < count.length; i++){
         const indexID = count[i];
         arrayPrice.push(data[indexID - 1].price);
       }
     }
+    if(count.length === 0) return 0;
     if(arrayPrice.length > 0){
       var price = arrayPrice.reduce((sum, num) => {
         return sum + num;
@@ -92,20 +94,21 @@ class App extends Component {
       this.setState({
         count: [],
         price: 0,
-        arraySrc: []
+        arraySrc: [],
+        isReset: true
       }, () => this.addImage())
     }
   }
   render(){
-    const {  data, countDefault, price, arraySrc } = this.state;
+    const {  data, price, arraySrc, isReset } = this.state;
     return (
       <div className="App">
         <Image src={arraySrc}/>
         <List data={data}
               price={price}
-              countDefault={countDefault}
               onIncrease={this.onIncrease}
               onDecrease={this.onDecrease}
+              isReset={isReset}
               resetOrder={() => this.resetOrder()}/>
       </div>
     );
