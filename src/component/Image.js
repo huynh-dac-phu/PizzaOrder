@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
 import './style/image/image.css'
-export default class Image extends Component {
+class Image extends Component {
     render(){
         return(
             <div className='image-grid'>
@@ -16,3 +16,9 @@ export default class Image extends Component {
         );
     }
 }
+const mapStatetoProps = (state) => {
+    return {
+        src: state.list.arraySrc
+    }
+}
+export default connect(mapStatetoProps)(Image)
