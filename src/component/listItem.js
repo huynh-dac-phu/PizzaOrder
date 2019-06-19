@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 
 import './style/listItem/listItem.css';
 import './style/pick/pick.css';
-export default class ListItem extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            count: 0,
-            isReset: this.props.isReset
-        }
+import {connect} from 'react-redux';
+import * as action from './../actions/index';
+class ListItem extends Component {
+    state = {
+        count: 0
     }
     onIncrease = () => {
-       this.props.onIncrease(this.props.id)
-       const { count } = this.state;
-       this.setState({
-           count: count + 1
-       })
+        this.props.onIncrease(this.props.id)
+        const { count } = this.state;
+        this.setState({
+            count: count + 1
+        })
     }
     onDecrease = () => {
-        this.props.onDecrease(this.props.id)
         const {count} = this.state;
         if(count > 0){
+            this.props.onDecrease(this.props.id)
             this.setState({
                 count: count - 1
             })
@@ -29,8 +27,7 @@ export default class ListItem extends Component {
     componentWillReceiveProps(prevProps){
         if(prevProps.isReset === true){
             this.setState({
-                count: 0,
-                isReset: false
+                count: 0
             })
         }
     }
@@ -61,3 +58,20 @@ export default class ListItem extends Component {
         );
     }
 }
+const mapStatetoProps = (state) => {
+    return {
+        
+    }
+}
+const mapDispatchtoProps = (dispatch , props) => {
+    // action state to props
+    return {
+        onIncrease: (id) => {
+            dispatch(action.onIncrease(id))
+        },
+        onDecrease: (id) => {
+            dispatch(action.onDecrease(id))
+        }
+    }
+}
+export default connect(mapStatetoProps, mapDispatchtoProps)(ListItem)
